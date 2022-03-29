@@ -10,14 +10,17 @@ class Node{
 public:
 //Variables
 int data;
-Node* next;
+Node* left;
+Node* right;
 //Constructor
 Node(int newData);
 //Destructor
 ~Node();
 //Getters and Setters for Nodes
-Node* getNext();
-void setNext(Node* newNext);
+Node* getRight();
+void setRight(Node* newRight);
+Node* getLeft();
+void setLeft(Node* newLeft);
 //Getters and setters for Student data
 int getData();
 void setData(int newData);

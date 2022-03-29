@@ -3,16 +3,24 @@
 //Constructor
 Node::Node(int newData){
 data = newData;
-next = NULL;
+right = NULL;
+left = NULL;
 }
 
-//Getters and Setters for Next Nodes and Student data
-Node* Node:: getNext(){
-    return next;
+//Getters and Setters for Neighbor Nodes and Student data
+Node* Node:: getRight(){
+    return right;
 }
 
-void Node::setNext(Node* newNext){
-    next = newNext;
+void Node::setRight(Node* newRight){
+    right = newRight;
+}
+Node* Node:: getLeft(){
+    return left;
+}
+
+void Node::setLeft(Node* newLeft){
+    left = newLeft;
 }
 
 int Node:: getData(){
