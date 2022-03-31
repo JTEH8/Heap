@@ -7,7 +7,7 @@ using namespace std;
 void addHeap(Node* newNode, Node* & head, Node* array[], int & sizeCount);
 void printHeap(Node* head, int space);
 void printPostfix(Node* current);
-
+void deleteTree(Node* treeHead);
 int main(){
 Node* heap[100];
 int size = 1;
@@ -102,5 +102,30 @@ void printPostfix(Node* current){
         cout << current->getData() << endl;
         printPostfix(current->getLeft());
         printPostfix(current->getRight());
+    }
+}
+
+void deleteTree(Node* treeHead){
+    if(treeHead == NULL){
+        cout << "NULL!";
+        return;
+    }
+    else{
+        Node* current = treeHead;
+        while(current != NULL){
+            if(current->getRight() != NULL){
+                current = current->getRight();
+            }
+            else if(current->getLeft() != NULL){
+                current = current->getLeft();
+            }
+            else{
+                break;
+            }
+        }
+        cout << current->getData() << endl;
+        int temp = treeHead->getData();
+        treeHead->setData(current->getData());
+        delete current;
     }
 }
