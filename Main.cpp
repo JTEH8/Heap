@@ -1,5 +1,7 @@
+
 #include <iostream>
 #include <cstring>
+#include <fstream>
 #include "Node.h"
 
 using namespace std;
@@ -7,7 +9,7 @@ using namespace std;
 void addHeap(Node* newNode, Node* & head, Node* array[], int & sizeCount);
 void printHeap(Node* head, int space);
 void printPostfix(Node* current);
-void deleteTree(Node* &treeHead);
+void deleteTree(Node* & treeHead);
 int main(){
 Node* heap[100];
 int size = 1;
@@ -15,14 +17,36 @@ Node* treeHead = NULL;
 int input = 0;
 bool running = true;
 char input2[100];
+char input3[100];
+char input4[100];
 while(running == true){
     cout << "Enter an input: (ADD to add, QUIT to quit, DELETE to delete, and PRINT to print)." << endl;
     cin >> input2;
     if(strcmp(input2, "ADD") == 0){
-        cout << "Insert some numbers. If you want to add more than one just type the ADD COMMAND again once you enter a number." << endl;
+        cout << "Would you like to add numbers to the heap via direct input (type INPUT) or via file name (type FILE)?" << endl;
+        cin >> input3;
+        if(strcmp(input3, "INPUT") == 0){
+        cout << "Insert a number. If you want to add more than one just type the ADD COMMAND again once you enter a number." << endl;
         cin >> input;
         Node* newNode = new Node(input);
         addHeap(newNode, treeHead, heap, size);
+        }
+	else if(strcmp(input3, "FILE") == 0){
+        int arr[100];
+        cout << "Enter a file name: (e.g. filename.txt)" << endl;
+        cin >> input4;
+	fstream nums;
+        nums.open(input4);
+        for(int i = 0; i < 10; i++){
+            int temp = 0;
+            nums >> temp;
+            Node* newNode = new Node(temp);
+            addHeap(newNode, treeHead, heap, size);
+	}
+	nums.close();
+       	printHeap(treeHead, 0);
+	deleteTree(treehead, 0);
+	}
     }
     else if(strcmp(input2, "QUIT") == 0){
         cout << "Thanks for using heap!" << endl;
@@ -110,12 +134,17 @@ void printPostfix(Node* current){
 
 void deleteTree(Node* & treeHead){
     if(treeHead == NULL){
-        cout << "NULL!";
+      //cout << "NULL!";
         return;
     }
     else{
         Node* current = treeHead;
-        while(current != NULL){
+	deleteTree(current->getRight());
+	delete current;
+	deleteTree(current->getLeft());
+	
+	/*
+while(current != NULL){
             if(current->getRight() != NULL){
                 current = current->getRight();
             }
@@ -129,6 +158,7 @@ void deleteTree(Node* & treeHead){
         cout << current->getData() << endl;
         int temp = treeHead->getData();
         treeHead->setData(current->getData());
-        delete current;
+        current = NULL;
+	*/    
     }
 }
