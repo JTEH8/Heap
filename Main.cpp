@@ -7,7 +7,7 @@ using namespace std;
 void addHeap(Node* newNode, Node* & head, Node* array[], int & sizeCount);
 void printHeap(Node* head, int space);
 void printPostfix(Node* current);
-void deleteTree(Node* treeHead);
+void deleteTree(Node* &treeHead);
 int main(){
 Node* heap[100];
 int size = 1;
@@ -16,7 +16,7 @@ int input = 0;
 bool running = true;
 char input2[100];
 while(running == true){
-    cout << "Enter an input: (ADD to add, QUIT to quit, and PRINT to print)." << endl;
+    cout << "Enter an input: (ADD to add, QUIT to quit, DELETE to delete, and PRINT to print)." << endl;
     cin >> input2;
     if(strcmp(input2, "ADD") == 0){
         cout << "Insert some numbers. If you want to add more than one just type the ADD COMMAND again once you enter a number." << endl;
@@ -28,6 +28,9 @@ while(running == true){
         cout << "Thanks for using heap!" << endl;
         running == false;
         return 0;
+    }
+    else if(strcmp(input2, "DELETE") == 0){
+        deleteTree(treeHead);
     }
     else if(strcmp(input2, "PRINT") == 0){
         printHeap(treeHead, 0);
@@ -105,7 +108,7 @@ void printPostfix(Node* current){
     }
 }
 
-void deleteTree(Node* treeHead){
+void deleteTree(Node* & treeHead){
     if(treeHead == NULL){
         cout << "NULL!";
         return;
