@@ -21,6 +21,9 @@ Node* getRight();
 void setRight(Node* newRight);
 Node* getLeft();
 void setLeft(Node* newLeft);
+//These two functions are used to re-sort the heap
+int getRight2();
+int getLeft2();
 //Getters and setters for Student data
 int getData();
 void setData(int newData);

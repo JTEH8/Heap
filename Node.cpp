@@ -23,6 +23,24 @@ void Node::setLeft(Node* newLeft){
     left = newLeft;
 }
 
+int Node::getRight2(){
+    if(right != NULL){
+        return right->getData();
+    }
+    else{
+        return -1;
+    }
+}
+
+int Node::getLeft2(){
+    if(left != NULL){
+        return left->getData();
+    }
+    else{
+        return -1;
+    }
+}
+
 int Node:: getData(){
     return data;
 }
